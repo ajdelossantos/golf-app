@@ -66,9 +66,9 @@ function holesComponent() {
             // {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"}
           ] 
         },
-        fairwayTotal:4,
-        greenTotal:4,
-        scoreTotal:'',
+        fairwayTotal:12,
+        greenTotal:11,
+        scoreTotal:48,
         user:"scott"
       };
       ls.setItem('golf_app', JSON.stringify(golfObj));
