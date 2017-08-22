@@ -1,7 +1,7 @@
 ## Golf App
 
 ##### Javascript app, completely client side utilizing localStorage
-###### Technologies: Javascript, HTML/SCSS, Bootstrap 4.0.0-beta
+##### Technologies: Javascript, HTML/SCSS, Bootstrap 4.0.0-beta
 ##
 #### Scorecard app, tracking strokes, puts, hit fairways/greens and score card overview at end of round. More features to come in the future.
 ##
