@@ -1,4 +1,4 @@
 node_modules/
 dist/
-script/site.js
+scripts/site.js
 .DS_Store
