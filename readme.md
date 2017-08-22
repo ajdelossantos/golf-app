@@ -11,7 +11,7 @@
 
 #### Terminal into directory:
 	- npm install
-	- gulp serve
+	- gulp
 
 #### Shortcut for prepopulated data, login as:
 	- scott
