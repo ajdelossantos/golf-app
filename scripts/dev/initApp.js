@@ -1,4 +1,3 @@
-
 function initApp(holesService) {
 
   var ls = window.localStorage;
