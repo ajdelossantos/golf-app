@@ -1,0 +1,139 @@
+.table-golf-app {
+
+	td {
+		vertical-align: middle;
+	}
+
+	input {
+		max-width: 50px;
+		text-align: center;
+	}
+}
+
+.table-score-card {
+
+	thead {
+
+		th {
+			height: 48px;
+
+			div {
+				position: absolute;
+				top: 15px;
+			}
+		}
+	}
+
+	tbody {
+
+		td {
+			text-align: center;
+		}
+
+		th {
+			min-width: 80px;
+		}
+
+		th div {
+			position: absolute;
+			left: 0px;
+			height: 45px;
+			min-width: 80px;
+			padding-left: 10px;
+			padding-top: 10px;
+			background-color: #eee;
+		}
+
+		tr:nth-of-type(odd) th div {
+			background-color: #e2e2e2;
+		}
+		tr:nth-child(1) th div {
+			top: 48px;
+		}
+		tr:nth-child(2) th div {
+			top: 94px;
+		}
+		tr:nth-child(3) th div {
+			top: 140px;
+		}
+		tr:nth-child(4) th div {
+			top: 186px;
+		}
+		tr:nth-child(5) th div {
+			top: 232px;
+		}
+		tr:nth-child(6) th div {
+			top: 281px;
+		}
+		tr:nth-child(6) th div {
+			top: 279px;
+		}
+		tr:nth-child(7) th div {
+			top: 325px;
+		}		
+	}
+}
+
+@media (min-width: 992px) {
+
+	.table-score-card {
+
+		thead {
+
+			th {
+				height: auto;
+
+				div {
+					position: static;
+					top: 15px;
+				}
+			}
+		}
+
+		tbody {
+
+			th {
+				min-width: auto;
+			}
+
+			th div {
+				position: static;
+				left: auto;
+				height: auto;
+				min-width: auto;
+				padding-left: 0;
+				padding-top: 0;
+				background-color: transparent;
+				border-right: 0;
+			}
+
+			tr:nth-of-type(odd) th div {
+				background-color: transparent;
+			}
+			tr:nth-child(1) th div {
+				top: auto
+			}
+			tr:nth-child(2) th div {
+				top: auto
+			}
+			tr:nth-child(3) th div {
+				top: auto;
+			}
+			tr:nth-child(4) th div {
+				top: auto;
+			}
+			tr:nth-child(5) th div {
+				top: auto;
+			}
+			tr:nth-child(6) th div {
+				top: auto;
+			}
+			tr:nth-child(6) th div {
+				top: auto;
+			}
+			tr:nth-child(7) th div {
+				top: auto;
+			}			
+		}
+	}
+}
