@@ -40,6 +40,11 @@ function holesComponent() {
   var golfObj = ls.getItem('golf_app');
   golfObj = JSON.parse(golfObj);
 
+  if (golfObj.complete) { // is round complete..
+    completeComponentInit();
+    return;
+  }
+
   // TEMP Obj for testing, login as 'scott' for pre populated fields
     if (golfObj.user === 'scott') {
       golfObj = {
@@ -141,6 +146,7 @@ function holesComponent() {
     ls.setItem('golf_app', JSON.stringify(golfObj));
     
     if (lastHoleInt === golfObj.course.holes.length && lastHoleBool) {
+      replaceObj(lastHoleInt);
       completeComponentInit();
     }
     holesLen = golfObj.course.holes.length;
