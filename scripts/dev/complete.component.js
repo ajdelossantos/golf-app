@@ -14,9 +14,15 @@ function completeComponent() {
 
   var btnReset = document.getElementById('btnCompleteReset');
 
+
+
   var ls = window.localStorage;
   var golfObj = ls.getItem('golf_app');
   golfObj = JSON.parse(golfObj);
+
+  golfObj.complete = true;
+  ls.setItem('golf_app', JSON.stringify(golfObj));
+  console.log('complete component', golfObj)
 
   elCourseName.innerHTML = golfObj.course.name;
 
