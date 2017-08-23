@@ -18,6 +18,14 @@ h2 {
 h3 {
   font-size: 16px; }
 
+header {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  padding: 10px;
+  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.125);
+  background-color: white; }
+
 .table-golf-app td {
   vertical-align: middle; }
 
@@ -25,8 +33,89 @@ h3 {
   max-width: 50px;
   text-align: center; }
 
+.table-score-card thead th {
+  height: 48px; }
+  .table-score-card thead th div {
+    position: absolute;
+    top: 15px; }
+
 .table-score-card tbody td {
   text-align: center; }
+
+.table-score-card tbody th {
+  min-width: 80px; }
+
+.table-score-card tbody th div {
+  position: absolute;
+  left: 0px;
+  height: 45px;
+  min-width: 80px;
+  padding-left: 10px;
+  padding-top: 10px;
+  background-color: #eee; }
+
+.table-score-card tbody tr:nth-of-type(odd) th div {
+  background-color: #e2e2e2; }
+
+.table-score-card tbody tr:nth-child(1) th div {
+  top: 48px; }
+
+.table-score-card tbody tr:nth-child(2) th div {
+  top: 94px; }
+
+.table-score-card tbody tr:nth-child(3) th div {
+  top: 140px; }
+
+.table-score-card tbody tr:nth-child(4) th div {
+  top: 186px; }
+
+.table-score-card tbody tr:nth-child(5) th div {
+  top: 232px; }
+
+.table-score-card tbody tr:nth-child(6) th div {
+  top: 281px; }
+
+.table-score-card tbody tr:nth-child(6) th div {
+  top: 279px; }
+
+.table-score-card tbody tr:nth-child(7) th div {
+  top: 325px; }
+
+@media (min-width: 992px) {
+  .table-score-card thead th {
+    height: auto; }
+    .table-score-card thead th div {
+      position: static;
+      top: 15px; }
+  .table-score-card tbody th {
+    min-width: auto; }
+  .table-score-card tbody th div {
+    position: static;
+    left: auto;
+    height: auto;
+    min-width: auto;
+    padding-left: 0;
+    padding-top: 0;
+    background-color: transparent;
+    border-right: 0; }
+  .table-score-card tbody tr:nth-of-type(odd) th div {
+    background-color: transparent; }
+  .table-score-card tbody tr:nth-child(1) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(2) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(3) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(4) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(5) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(6) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(6) th div {
+    top: auto; }
+  .table-score-card tbody tr:nth-child(7) th div {
+    top: auto; } }
 
 .wrap-app-holes, .wrap-app-complete {
   position: relative;
@@ -48,6 +137,15 @@ h3 {
 
 .wrap-shadow {
   position: relative; }
+  .wrap-shadow:before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 83.5%;
+    background-color: #aaa;
+    left: 80px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    bottom: 17px; }
   .wrap-shadow:after {
     content: '';
     position: absolute;
@@ -62,16 +160,8 @@ h3 {
   overflow-x: auto; }
 
 @media (min-width: 992px) {
-  .wrap-shadow:after {
+  .wrap-shadow:after, .wrap-shadow:before {
     content: none; } }
-
-header {
-  position: relative;
-  z-index: 1;
-  height: auto;
-  padding: 10px;
-  box-shadow: 0 2px 1px rgba(0, 0, 0, 0.125);
-  background-color: white; }
 
 .scroll-vert {
   height: 100%;

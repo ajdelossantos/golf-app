@@ -1,0 +1,77 @@
+.wrap-app-holes, .wrap-app-complete {
+	position: relative;
+	top: -50px;
+
+	form {
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+}
+
+.wrap-app-holes {
+
+	h3 {
+
+		span {
+			font-weight: 300;
+		}
+	}
+}
+
+.wrap-app-init {
+	position: relative;
+	top: -50px;
+	padding-top: 50px;
+}
+
+.wrap-app-complete {
+
+	h2 {
+
+		span {
+			font-weight: 300;
+		}
+	}
+}
+
+.wrap-shadow {
+	position: relative;
+
+	&:before {
+	    content: '';
+	    position: absolute;
+	    width: 1px;
+	    height: 83.5%;
+	    background-color: #aaa;
+	    left: 80px;
+	    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+	    bottom: 17px;
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		height: 96%;
+		top: 0;
+		right: 0;
+		width: 1px;
+		background-color: #fff;
+		box-shadow: -4px -1px 8px rgba(0, 0, 0, 0.5);
+	}
+}
+
+.wrap-table {
+	overflow-x: auto;
+}
+
+
+@media (min-width: 992px) {
+
+	.wrap-shadow {
+
+		&:after, &:before {
+			content: none;
+		}
+	}
+
+}
