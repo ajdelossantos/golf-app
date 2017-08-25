@@ -12,10 +12,27 @@ function completeComponent() {
   var elStrokes = document.getElementById('strokes');
   var elPutts = document.getElementById('putts');
   var elTotal = document.getElementById('totalScore');
+  var elTotalPutts = document.getElementById('totalPutts');
+  var elTotalFairways = document.getElementById('totalFairways');
+  var elTotalGreens = document.getElementById('totalGreens');
+
+  var elTotalEagles = document.getElementById('totalEagles');
+  var elTotalBirdies = document.getElementById('totalBirdies');
+  var elTotalPars = document.getElementById('totalPars');
+  var elTotalBogies = document.getElementById('totalBogies');
+  var elTotalDoubleBogies = document.getElementById('totalDoubleBogies');
+
+  var eagles = 0;
+  var birdies = 0;
+  var pars = 0;
+  var bogies = 0;
+  var doubleBogies = 0;
+
+  var fairways = 0;
+  var greens = 0;
+  var putts = 0;
 
   var btnReset = document.getElementById('btnCompleteReset');
-
-
 
   var ls = window.localStorage;
   var golfObj = ls.getItem('golf_app');
@@ -23,8 +40,6 @@ function completeComponent() {
 
   golfObj.complete = true;
   ls.setItem('golf_app', JSON.stringify(golfObj));
-  console.log('complete component', golfObj)
-
   elCourseName.innerHTML = golfObj.course.name;
 
   // Build Score card, broke it up
@@ -39,19 +54,28 @@ function completeComponent() {
     
     tdHoleNum.innerHTML = '<td>' + '<strong>' + (i+1) + '</strong>' + '</td>';
     tdPar.innerHTML = '<td>' + golfObj.course.holes[i].par + '</td>';
+    if (+strokes === +golfObj.course.holes[i].par) {
+      pars++;
+    }
     if (+under > +strokes) {
       tdScore.className = 'par-eagle';
+      eagles++;
     }
     under--
     if (under-- === +strokes) {
       tdScore.className = 'par-birdie';
+      birdies++;
+      eagles--;
     }
     if (over < +strokes) {
       tdScore.className = 'par-double-bogey';
+      doubleBogies++;
     }
     over++
     if (over++ === +strokes) {
       tdScore.className = 'par-bogey';
+      bogies++;
+      doubleBogies--;
     }
     tdScore.innerHTML = '<td>' + golfObj.course.holes[i].totalStrokes + '</td>';
     elHoleList.appendChild(tdHoleNum);
@@ -69,6 +93,7 @@ function completeComponent() {
       tdHitFairway.innerHTML = '<td>' + '&bull;' + '</td>';
       tdHitFairway.className = 'text-success';
       elHitFairway.appendChild(tdHitFairway);
+      fairways++;
     }
     if (!golfObj.course.holes[i].hitFairway) {
       isFalse = (golfObj.course.holes[i].hitFairway === false) ? 'text-danger' : 'text-dull';
@@ -80,6 +105,7 @@ function completeComponent() {
       tdHitGreen.innerHTML = '<td>' + '&bull;' + '</td>';
       tdHitGreen.className = 'text-success';
       elHitGreen.appendChild(tdHitGreen);
+      greens++;
     }
     if (!golfObj.course.holes[i].hitGreen) {
       isFalse = (golfObj.course.holes[i].hitGreen === false) ? 'text-danger' : 'text-dull';
@@ -93,16 +119,26 @@ function completeComponent() {
   for (var i = 0; i < golfObj.course.holes.length; i++) {
     var tdStrokes = document.createElement('td');
     var tdPutts = document.createElement('td');
+    var puttsVal = golfObj.course.holes[i].putts;
     tdStrokes.className = 'text-dull';
     tdStrokes.innerHTML = '<td>' + golfObj.course.holes[i].strokes + '</td>';
     tdPutts.className = 'text-dull';
     tdPutts.innerHTML = '<td>' + golfObj.course.holes[i].putts + '</td>';
     elStrokes.appendChild(tdStrokes);
     elPutts.appendChild(tdPutts);
+    putts = putts + +puttsVal;
   }
 
   // Score total
   elTotal.value = golfObj.scoreTotal;
+  elTotalFairways.value = fairways;
+  elTotalGreens.value = greens;
+  elTotalPutts.value = putts;
+  elTotalEagles.value = eagles;
+  elTotalBirdies.value = birdies;
+  elTotalPars.value = pars;
+  elTotalBogies.value = bogies;
+  elTotalDoubleBogies.value = doubleBogies;
 
   // Reset App
   btnReset.addEventListener('click', function() {
