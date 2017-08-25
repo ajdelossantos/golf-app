@@ -6,6 +6,12 @@ function holesComponent() {
 
   var wrapComplete = document.getElementById('wrapComplete');
 
+  // Start here for par.. radioValue()..
+  var elParRadio = document.getElementsByName('parRadio');
+  var elEvtParRadios = document.querySelectorAll('.js-radio-evt')
+  var elParThree = document.getElementById('parThree');
+  var elParFour = document.getElementById('parFour');
+  var elParFive = document.getElementById('parFive');
   var elHitFairwayRadio = document.getElementsByName('fairwayRadio');
   var elHitGreenRadio = document.getElementsByName('greenRadio');
   var elFairwayYes = document.getElementById('fairwayYes');
@@ -51,22 +57,22 @@ function holesComponent() {
       course: {
           name: "Torrey Pines",
           holes: [
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: false, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: null, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: false, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
-            {hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"}
+            {par: "3", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "4", hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "4", hitFairway: true, hitGreen: false, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "5", hitFairway: null, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "5", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: false, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "5", hitFairway: true, hitGreen: false, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "4", hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "4", hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"},
+            {par: "3", hitFairway: true, hitGreen: null, strokes: "2", putts: "1", totalStrokes: "3"}
             // {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"}
             // {hitFairway: true, hitGreen: true, strokes: "2", putts: "1", totalStrokes: "3"}
           ] 
@@ -95,17 +101,18 @@ function holesComponent() {
 
   elCourseName.innerHTML = golfObj.course.name;
   elHoleNumber.innerHTML = golfObj.course.holes.length+1
-  wrapHoles.classList.remove('d-none');
-
+  wrapHoles.classList.remove('d-none');;
 
   // Increment events
   btnStrokesUp.addEventListener('click', function() {
       elStrokesVal.value = holesService().incrementUp(elStrokesVal.value);
       holesService().totalStrokes(elPuttsVal.value, elStrokesVal.value, elTotalStrokes, btnNextHole);
+      holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
   });
   btnStrokesDown.addEventListener('click', function() {
       elStrokesVal.value = holesService().incrementDown(elStrokesVal.value);
       holesService().totalStrokes(elPuttsVal.value, elStrokesVal.value, elTotalStrokes, btnNextHole);
+      holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
   });
   btnPuttsUp.addEventListener('click', function() {
       elPuttsVal.value = holesService().incrementUp(elPuttsVal.value);
@@ -116,12 +123,19 @@ function holesComponent() {
       holesService().totalStrokes(elPuttsVal.value, elStrokesVal.value, elTotalStrokes, btnNextHole);
   }); // End increment events
 
-  
+  // Events on par radios..
+  for (var i = 0; i < elEvtParRadios.length; i++) {
+    elEvtParRadios[i].addEventListener('click', function() {
+      holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
+      console.log('holla!');
+    });
+  }
 
   // Next / paging
   btnNextHole.addEventListener('click', function() {
     var decHolesLength = elHoleNumber.innerHTML;
     var idx = decHolesLength;
+    var holesLen = null;
     var lastHoleInt = 18;
 
     if (+decHolesLength === 17) {
@@ -130,17 +144,17 @@ function holesComponent() {
     }
 
     +decHolesLength--;
-    if (decHolesLength < golfObj.course.holes.length) {
+    if (decHolesLength < golfObj.course.holes.length) { // something has changed during paging
       decHolesLength++
       if (!boolComparison(decHolesLength)) {
         replaceObj(decHolesLength);
       }
-      holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole);
+      holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
       idx++;
       reBuildHole(idx);
       return;
     }
-    var holesLen = null;
+    
     setCurrentTotals();
     golfObj.course.holes.push(buildObj());
     ls.setItem('golf_app', JSON.stringify(golfObj));
@@ -200,7 +214,7 @@ function holesComponent() {
     golfObj = ls.getItem('golf_app');
     golfObj = JSON.parse(golfObj);
     +idx;
-    holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole);
+    holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
     holesService().prevEnableDisable(idx, btnPrevHole);
     var holeInt = idx;
     elHoleNumber.innerHTML = holeInt++;
@@ -210,6 +224,9 @@ function holesComponent() {
       resetHole(idx);
       return;
     }
+    elParThree.checked = (golfObj.course.holes[idx].par === '3');
+    elParFour.checked = (golfObj.course.holes[idx].par === '4');
+    elParFive.checked = (golfObj.course.holes[idx].par === '5');
     elFairwayYes.checked = (golfObj.course.holes[idx].hitFairway);
     elGreenYes.checked = (golfObj.course.holes[idx].hitGreen);
     elFairwayNo.checked = (golfObj.course.holes[idx].hitFairway === false) ? true : false;
@@ -247,6 +264,7 @@ function holesComponent() {
   }
 
   function buildObj() {
+    holeObj.par = holesService().radioValues(elParRadio, true);
     holeObj.hitFairway = (holesService().radioValues(elHitFairwayRadio) === undefined) ?  null : holesService().radioValues(elHitFairwayRadio); // handle undefined
     holeObj.hitGreen = (holesService().radioValues(elHitGreenRadio) === undefined) ?  null : holesService().radioValues(elHitGreenRadio); // handle undefined
     holeObj.strokes = elStrokesVal.value;
@@ -268,6 +286,7 @@ function holesComponent() {
     btnNextHole.setAttribute('disabled', true);
     holesService().resetRadios(elHitFairwayRadio);
     holesService().resetRadios(elHitGreenRadio);
+    holesService().resetRadios(elParRadio);
     holesService().prevEnableDisable(idx, btnPrevHole);
   }
 

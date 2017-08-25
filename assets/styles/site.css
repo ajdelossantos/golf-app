@@ -26,12 +26,25 @@ header {
   box-shadow: 0 2px 1px rgba(0, 0, 0, 0.125);
   background-color: white; }
 
+.table-golf-app th {
+  vertical-align: middle; }
+
 .table-golf-app td {
   vertical-align: middle; }
 
-.table-golf-app input {
+.table-golf-app label {
+  margin-right: 10px; }
+
+.table-golf-app input[type='text'] {
+  display: inline-block;
   max-width: 50px;
+  margin-left: 10px;
   text-align: center; }
+
+.table-golf-app button {
+  position: relative;
+  top: -3px;
+  margin-right: 5px; }
 
 .table-score-card thead th {
   height: 48px; }
@@ -40,13 +53,69 @@ header {
     top: 15px; }
 
 .table-score-card tbody td {
-  text-align: center; }
+  text-align: center;
+  position: relative; }
+
+.table-score-card tbody .par-birdie {
+  color: #fff; }
+  .table-score-card tbody .par-birdie:after {
+    content: '';
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+    background-color: #28a745;
+    border-radius: 150px;
+    top: 11px;
+    z-index: -1; }
+
+.table-score-card tbody .par-eagle {
+  color: #fff; }
+  .table-score-card tbody .par-eagle:after {
+    content: '';
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+    background-color: #ffc107;
+    border-radius: 150px;
+    top: 11px;
+    z-index: -1; }
+
+.table-score-card tbody .par-bogey {
+  color: #fff; }
+  .table-score-card tbody .par-bogey:after {
+    content: '';
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+    background-color: rgba(0, 0, 0, 0.25);
+    top: 11px;
+    z-index: -1; }
+
+.table-score-card tbody .par-double-bogey {
+  color: #fff; }
+  .table-score-card tbody .par-double-bogey:after {
+    content: '';
+    position: absolute;
+    height: 24px;
+    width: 24px;
+    left: 50%;
+    margin-left: -12px;
+    background-color: #212529;
+    top: 11px;
+    z-index: -1; }
 
 .table-score-card tbody th {
   min-width: 80px; }
 
 .table-score-card tbody th div {
   position: absolute;
+  z-index: 1;
   left: 0px;
   height: 45px;
   min-width: 80px;
