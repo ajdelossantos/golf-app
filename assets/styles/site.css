@@ -238,3 +238,6 @@ header {
 
 .text-dull {
   color: #aaa; }
+
+.alert-required span {
+  color: #dc3545; }

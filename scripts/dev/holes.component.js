@@ -127,7 +127,6 @@ function holesComponent() {
   for (var i = 0; i < elEvtParRadios.length; i++) {
     elEvtParRadios[i].addEventListener('click', function() {
       holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
-      console.log('holla!');
     });
   }
 
@@ -304,5 +303,5 @@ function holesComponent() {
     completeComponent();
   }
 
-  console.log('holesComponent', golfObj);
+  // console.log('holesComponent', golfObj);
 }
