@@ -5,6 +5,7 @@ function completeComponent() {
 
   var elCourseName = document.getElementById('completeCourseName');
   var elHoleList = document.getElementById('holeList');
+  var elParList = document.getElementById('parList');
   var elHoleScore = document.getElementById('holeScore');
   var elHitFairway = document.getElementById('hitFairway');
   var elHitGreen = document.getElementById('hitGreen');
@@ -27,16 +28,35 @@ function completeComponent() {
   elCourseName.innerHTML = golfObj.course.name;
 
   // Build Score card, broke it up
-  // Hole number and hole score
+  // Hole number and hole score and par logic
   for (var i = 0; i < golfObj.course.holes.length; i++) {
     var tdHoleNum = document.createElement('td');
+    var tdPar = document.createElement('td');
     var tdScore = document.createElement('td');
+    var under = golfObj.course.holes[i].par;
+    var over = golfObj.course.holes[i].par;
+    var strokes = golfObj.course.holes[i].totalStrokes;
     
     tdHoleNum.innerHTML = '<td>' + '<strong>' + (i+1) + '</strong>' + '</td>';
+    tdPar.innerHTML = '<td>' + golfObj.course.holes[i].par + '</td>';
+    if (+under > +strokes) {
+      tdScore.className = 'par-eagle';
+    }
+    under--
+    if (under-- === +strokes) {
+      tdScore.className = 'par-birdie';
+    }
+    if (over < +strokes) {
+      tdScore.className = 'par-double-bogey';
+    }
+    over++
+    if (over++ === +strokes) {
+      tdScore.className = 'par-bogey';
+    }
     tdScore.innerHTML = '<td>' + golfObj.course.holes[i].totalStrokes + '</td>';
     elHoleList.appendChild(tdHoleNum);
+    elParList.appendChild(tdPar);
     elHoleScore.appendChild(tdScore);
-    
   }
 
   // Hit fairway and hit greens
@@ -82,7 +102,7 @@ function completeComponent() {
   }
 
   // Score total
-  totalScore.innerHTML = golfObj.scoreTotal;
+  elTotal.value = golfObj.scoreTotal;
 
   // Reset App
   btnReset.addEventListener('click', function() {

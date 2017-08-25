@@ -21,15 +21,19 @@ function holesService() {
       puttsInt = (+puttsVal) ? +puttsVal : 0;
       strokesInt = (+strokesVal) ? +strokesVal : 0;
       elTotal.value = puttsInt+strokesInt;
-      if (elTotal.value > 0) { // Validation on next btn, req totals value
-        elBtnNext.removeAttribute('disabled');
-      } else {
-        elBtnNext.setAttribute('disabled', true);
-      }
+      // if (elTotal.value > 0) { // Validation on next btn, req totals value
+      //   elBtnNext.removeAttribute('disabled');
+      // } else {
+      //   elBtnNext.setAttribute('disabled', true);
+      // }
     },
-    radioValues: function(elName) {
+    radioValues: function(elName, par) {
       var elVal = null;
-      for(var i = 0; i < elName.length; i++) {
+      for (var i = 0; i < elName.length; i++) {
+        if (elName[i].checked && par) {
+          elVal = elName[i].value;
+          return elVal;
+        }
         if (elName[i].checked) {
           elVal = (elName[i].value === 'true') ? true : false;
           return elVal;
@@ -41,21 +45,32 @@ function holesService() {
         elName[i].checked = undefined;
       }
     },
-    nextEnableDisable: function(length, btnNext) {
+    nextEnableDisable: function(length, btnNext, parRadio, strokesVal) {
       var decLength = length;
+      var isParChecked = null;
       decLength--;
-      if (length > decLength) {
+      for (var i = 0; i < parRadio.length; i++) {
+        if (parRadio[i].checked) {
+          isParChecked = true;
+        }
+      }
+      if (length > decLength && isParChecked && strokesVal.value) {
         btnNext.removeAttribute('disabled');
       } else {
         btnNext.setAttribute('disabled', true);
       }
     },
-    prevEnableDisable: function(idx, btnPrev) {
+    prevEnableDisable: function(idx, btnPrev, btnNext, strokesVal) {
       if (idx > 1) {
         btnPrev.removeAttribute('disabled');
       } else {
         btnPrev.setAttribute('disabled', true);
       }
+      // if (strokesVal.value) {
+      //   btnNext.removeAttribute('disabled');
+      // } else {
+      //   btnNext.setAttribute('disabled', true);
+      // }
     },
     getTotalScore: function(obj) {
       var total = 0;
