@@ -148,5 +148,5 @@ function completeComponent() {
     window.location.reload();
   });
 
-  console.log('completeComponent', golfObj);
+  // console.log('completeComponent', golfObj);
 }
