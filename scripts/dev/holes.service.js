@@ -21,11 +21,6 @@ function holesService() {
       puttsInt = (+puttsVal) ? +puttsVal : 0;
       strokesInt = (+strokesVal) ? +strokesVal : 0;
       elTotal.value = puttsInt+strokesInt;
-      // if (elTotal.value > 0) { // Validation on next btn, req totals value
-      //   elBtnNext.removeAttribute('disabled');
-      // } else {
-      //   elBtnNext.setAttribute('disabled', true);
-      // }
     },
     radioValues: function(elName, par) {
       var elVal = null;
@@ -66,11 +61,13 @@ function holesService() {
       } else {
         btnPrev.setAttribute('disabled', true);
       }
-      // if (strokesVal.value) {
-      //   btnNext.removeAttribute('disabled');
-      // } else {
-      //   btnNext.setAttribute('disabled', true);
-      // }
+      setTimeout(function() { // Could use more work..
+        if (strokesVal.value) {
+          btnNext.removeAttribute('disabled');
+        } else {
+          btnNext.setAttribute('disabled', true);
+        }
+      },100);
     },
     getTotalScore: function(obj) {
       var total = 0;

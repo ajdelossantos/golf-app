@@ -9,11 +9,14 @@ function completeComponent() {
   var elHoleScore = document.getElementById('holeScore');
   var elHitFairway = document.getElementById('hitFairway');
   var elHitGreen = document.getElementById('hitGreen');
+  var elGreensPerc = document.getElementById('greensPerc');
   var elStrokes = document.getElementById('strokes');
   var elPutts = document.getElementById('putts');
   var elTotal = document.getElementById('totalScore');
   var elTotalPutts = document.getElementById('totalPutts');
+  var elPuttsAvg = document.getElementById('puttsAvg');
   var elTotalFairways = document.getElementById('totalFairways');
+  var elFairwayPerc = document.getElementById('fairwayPerc');
   var elTotalGreens = document.getElementById('totalGreens');
 
   var elTotalEagles = document.getElementById('totalEagles');
@@ -83,6 +86,7 @@ function completeComponent() {
     elHoleScore.appendChild(tdScore);
   }
 
+  var fairwayNo = 0; // for fairway perc.
   // Hit fairway and hit greens
   for (var i = 0; i < golfObj.course.holes.length; i++) {
     var tdHitFairway = document.createElement('td');
@@ -100,6 +104,9 @@ function completeComponent() {
       tdHitFairway.innerHTML = '<td>' + '&bull;' + '</td>';
       tdHitFairway.className = isFalse;
       elHitFairway.appendChild(tdHitFairway);
+    }
+    if (golfObj.course.holes[i].hitFairway === null) {
+      fairwayNo++;
     }
     if (golfObj.course.holes[i].hitGreen) {
       tdHitGreen.innerHTML = '<td>' + '&bull;' + '</td>';
@@ -129,11 +136,24 @@ function completeComponent() {
     putts = putts + +puttsVal;
   }
 
-  // Score total
+  // Score total, avg. and perc.
   elTotal.value = golfObj.scoreTotal;
-  elTotalFairways.value = fairways;
-  elTotalGreens.value = greens;
-  elTotalPutts.value = putts;
+
+  elTotalPutts.value = putts; 
+  var puttsAvg = (+putts / 18).toFixed(2);
+  elPuttsAvg.innerHTML = puttsAvg;
+
+  var fairwayRecorded = 18 - fairwayNo;
+  elTotalFairways.value = fairways + '/' + fairwayRecorded;
+  fairways = fairways - fairwayNo;
+  var fairwayNumPerc = 100 / fairwayRecorded;
+  var fairwayPerc = fairways * fairwayNumPerc;
+  elFairwayPerc.innerHTML = fairwayPerc + '%';
+
+  elTotalGreens.value = greens + '/' + 18;
+  var greensPerc = greens * 5.5;
+  elGreensPerc.innerHTML = greensPerc + '%';
+
   elTotalEagles.value = eagles;
   elTotalBirdies.value = birdies;
   elTotalPars.value = pars;

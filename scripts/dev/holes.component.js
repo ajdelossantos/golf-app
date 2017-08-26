@@ -88,7 +88,7 @@ function holesComponent() {
   if (!golfObj.course.holes) {
       golfObj.course.holes = [];
       var initPrevIdx =golfObj.course.holes.length;
-      holesService().prevEnableDisable(initPrevIdx, btnPrevHole);
+      holesService().prevEnableDisable(initPrevIdx, btnPrevHole, btnNextHole, elTotalStrokes);
   } else {
     elFairwayTotal.value = golfObj.fairwayTotal;
     elGreenTotal.value = golfObj.greenTotal;
@@ -125,7 +125,14 @@ function holesComponent() {
 
   // Events on par radios..
   for (var i = 0; i < elEvtParRadios.length; i++) {
-    elEvtParRadios[i].addEventListener('click', function() {
+    elEvtParRadios[i].addEventListener('click', function(e) {
+      if (+e.target.value === 3) {
+        elFairwayYes.disabled = true;
+        elFairwayNo.disabled = true;
+      } else {
+        elFairwayYes.disabled = false;
+        elFairwayNo.disabled = false;
+      }
       holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
     });
   }
@@ -214,7 +221,7 @@ function holesComponent() {
     golfObj = JSON.parse(golfObj);
     +idx;
     holesService().nextEnableDisable(golfObj.course.holes.length, btnNextHole, elParRadio, elStrokesVal);
-    holesService().prevEnableDisable(idx, btnPrevHole);
+    holesService().prevEnableDisable(idx, btnPrevHole, btnNextHole, elTotalStrokes);
     var holeInt = idx;
     elHoleNumber.innerHTML = holeInt++;
     idx--;
@@ -286,7 +293,7 @@ function holesComponent() {
     holesService().resetRadios(elHitFairwayRadio);
     holesService().resetRadios(elHitGreenRadio);
     holesService().resetRadios(elParRadio);
-    holesService().prevEnableDisable(idx, btnPrevHole);
+    holesService().prevEnableDisable(idx, btnPrevHole, btnNextHole, elTotalStrokes);
   }
 
   // Reset App

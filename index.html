@@ -103,7 +103,7 @@
 											</tr>
 											<!-- Hit fairway -->
 											<tr>
-												<th colspan="3">
+												<th colspan="3" class="position-relative">
 													Hit fairway
 												</th>
 												<td class="text-right">
@@ -312,11 +312,11 @@
 								
 								<div class="form-group">
 									<table class="table table-striped table-golf-app">
-										<!-- <thead class="">
+										<thead class="">
 											<tr>
-												<td colspan="2">Totals below:</td>
+												<td colspan="2">Totals, averages and percentages below:</td>
 											</tr>
-										</thead> -->
+										</thead>
 										<tbody>
 											<tr>
 												<th>Score:</th>
@@ -327,19 +327,25 @@
 											<tr>
 												<th>Putts:</th>
 												<td class="text-right">
+													<small>Avg. putts</small>
+													<small id="puttsAvg"></small>
 													<input id="totalPutts" class="form-control text-center" type="text" readonly="true" placeholder="0">
 												</td>
 											</tr>
 											<tr>
 												<th>Fairways:</th>
 												<td class="text-right">
-													<input id="totalFairways" class="form-control text-center" type="text" readonly="true" placeholder="0">
+													<small>Fairway perc.</small>
+													<small id="fairwayPerc"></small>
+													<input id="totalFairways" class="form-control form-input-lg text-center" type="text" readonly="true" placeholder="0">
 												</td>
 											</tr>
 											<tr>
 												<th>Greens:</th>
 												<td class="text-right">
-													<input id="totalGreens" class="form-control text-center" type="text" readonly="true" placeholder="0">
+													<small>Greens perc.</small>
+													<small id="greensPerc"></small>
+													<input id="totalGreens" class="form-control form-input-lg text-center" type="text" readonly="true" placeholder="0">
 												</td>
 											</tr>
 											<tr>
