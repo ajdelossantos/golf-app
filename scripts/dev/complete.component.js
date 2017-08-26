@@ -147,11 +147,11 @@ function completeComponent() {
   elTotalFairways.value = fairways + '/' + fairwayRecorded;
   fairways = fairways - fairwayNo;
   var fairwayNumPerc = 100 / fairwayRecorded;
-  var fairwayPerc = fairways * fairwayNumPerc;
+  var fairwayPerc = (fairways * fairwayNumPerc).toFixed(2);
   elFairwayPerc.innerHTML = fairwayPerc + '%';
 
   elTotalGreens.value = greens + '/' + 18;
-  var greensPerc = greens * 5.5;
+  var greensPerc = (greens * 5.5).toFixed(2);
   elGreensPerc.innerHTML = greensPerc + '%';
 
   elTotalEagles.value = eagles;
