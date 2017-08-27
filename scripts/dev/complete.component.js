@@ -145,7 +145,6 @@ function completeComponent() {
 
   var fairwayRecorded = 18 - fairwayNo;
   elTotalFairways.value = fairways + '/' + fairwayRecorded;
-  fairways = fairways - fairwayNo;
   var fairwayNumPerc = 100 / fairwayRecorded;
   var fairwayPerc = (fairways * fairwayNumPerc).toFixed(2);
   elFairwayPerc.innerHTML = fairwayPerc + '%';
