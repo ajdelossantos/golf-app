@@ -52,6 +52,9 @@ header {
 .table-golf-app .form-input-lg {
   max-width: 70px !important; }
 
+.table-golf-app .form-input-xl {
+  max-width: 85px !important; }
+
 .table-golf-app button {
   position: relative;
   top: -3px;
@@ -222,7 +225,6 @@ header {
     position: absolute;
     width: 1px;
     height: 83.5%;
-    background-color: #aaa;
     left: 80px;
     box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
     bottom: 17px; }

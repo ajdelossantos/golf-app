@@ -13,6 +13,7 @@ function completeComponent() {
   var elStrokes = document.getElementById('strokes');
   var elPutts = document.getElementById('putts');
   var elTotal = document.getElementById('totalScore');
+  var elTotalPar = document.getElementById('totalPar');
   var elTotalPutts = document.getElementById('totalPutts');
   var elPuttsAvg = document.getElementById('puttsAvg');
   var elTotalFairways = document.getElementById('totalFairways');
@@ -47,6 +48,7 @@ function completeComponent() {
 
   // Build Score card, broke it up
   // Hole number and hole score and par logic
+  var totalPar = 0;
   for (var i = 0; i < golfObj.course.holes.length; i++) {
     var tdHoleNum = document.createElement('td');
     var tdPar = document.createElement('td');
@@ -54,6 +56,8 @@ function completeComponent() {
     var under = golfObj.course.holes[i].par;
     var over = golfObj.course.holes[i].par;
     var strokes = golfObj.course.holes[i].totalStrokes;
+
+    totalPar = totalPar + +golfObj.course.holes[i].par;
     
     tdHoleNum.innerHTML = '<td>' + '<strong>' + (i+1) + '</strong>' + '</td>';
     tdPar.innerHTML = '<td>' + golfObj.course.holes[i].par + '</td>';
@@ -137,7 +141,11 @@ function completeComponent() {
   }
 
   // Score total, avg. and perc.
-  elTotal.value = golfObj.scoreTotal;
+  
+  elTotal.value = golfObj.scoreTotal
+  var overValue = totalPar + ' / ' + '+' + (golfObj.scoreTotal - totalPar);
+  var underValue = totalPar + ' / ' + (golfObj.scoreTotal - totalPar);
+  elTotalPar.innerHTML = ((golfObj.scoreTotal - totalPar) > 0) ?  overValue : underValue;
 
   elTotalPutts.value = putts; 
   var puttsAvg = (+putts / 18).toFixed(2);
