@@ -237,7 +237,8 @@ header {
     box-shadow: -4px -1px 8px rgba(0, 0, 0, 0.5); }
 
 .wrap-table {
-  overflow-x: auto; }
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; }
 
 @media (min-width: 992px) {
   .wrap-shadow:after, .wrap-shadow:before {
@@ -245,7 +246,8 @@ header {
 
 .scroll-vert {
   height: 100%;
-  overflow-y: auto; }
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch; }
 
 .text-dull {
   color: #aaa; }
